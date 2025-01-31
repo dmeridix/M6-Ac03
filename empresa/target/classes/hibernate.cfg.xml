@@ -27,7 +27,6 @@
         <!-- Mapeo usando anotaciones en clases -->
         <mapping class="com.iticbcn.hibernate.models.Empleat"/>
         <mapping class="com.iticbcn.hibernate.models.Departament"/>
-        <mapping class="com.iticbcn.hibernate.models.Tasca"/>
         <mapping class="com.iticbcn.hibernate.models.Historic"/>
 
     </session-factory>
