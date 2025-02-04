@@ -4,8 +4,15 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import com.iticbcn.danimerida.DAO.DepartamentDAO;
+import com.iticbcn.danimerida.DAO.EmpleatDAO;
+import com.iticbcn.danimerida.DAO.HistoricDAO;
+import com.iticbcn.danimerida.DAO.TascaDAO;
 import com.iticbcn.danimerida.model.*;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,40 +21,9 @@ public class Main {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         try (Session session = sessionFactory.openSession()) {
             Transaction tx = session.beginTransaction();
+            boolean DispOptions = true;
+        
             
-            // Crear un departamento
-            Departament departament = new Departament();
-            departament.setNom("Tus");
-            session.persist(departament);
-            
-            // Crear empleados
-            Empleat empleat1 = new Empleat();
-            empleat1.setNom("Anna Perez");
-            empleat1.setDepartament(departament);
-            session.persist(empleat1);
-            
-            Empleat empleat2 = new Empleat();
-            empleat2.setNom("Joan Martí");
-            empleat2.setDepartament(departament);
-            session.persist(empleat2);
-            
-            // Crear una tarea
-            Tasca tasca = new Tasca();
-            tasca.setDescripcio("Desenvolupar aplicació");
-            
-            // Asignar empleados a la tarea
-            Set<Empleat> empleats = new HashSet<>();
-            empleats.add(empleat1);
-            empleats.add(empleat2);
-            tasca.setEmpleats(empleats);
-            
-            session.persist(tasca);
-            
-            // Crear un histórico
-            Historic historic = new Historic();
-            historic.setTasca(tasca);
-            historic.setComentari("Inici de desenvolupament");
-            session.persist(historic);
             
             tx.commit();
             System.out.println("Datos guardados correctamente!");
@@ -57,4 +33,52 @@ public class Main {
             sessionFactory.close();
         }
     }
+    public static Object seleccionarTaula(BufferedReader br, SessionFactory session) throws IOException {
+        System.out.println("Selecciona la taula:");
+        System.out.println("1. Departaments");
+        System.out.println("2. Empleats");
+        System.out.println("3. Tasques");
+        System.out.println("4. Historic");
+        System.out.print("Introdueix l'opció >> ");
+        
+        int taula = Integer.parseInt(br.readLine());
+        
+        return switch (taula) {
+            case 1 -> new DepartamentDAO(session);
+            case 2 -> new EmpleatDAO(session);
+            case 3 -> new TascaDAO(session);
+            case 4 -> new HistoricDAO(session);
+            default -> {
+                System.out.println("Opció no vàlida.");
+                yield null;
+            }
+        };
+    }
+    public static void seleccionarAccio(Object dao, BufferedReader br) throws IOException {
+        if (dao == null) return;
+        
+        System.out.println("Selecciona l'acció:");
+        System.out.println("1. Llistar");
+        System.out.println("2. Inserir");
+        System.out.println("3. Actualitzar");
+        System.out.println("4. Eliminar");
+        System.out.print("Introdueix l'opció >> ");
+        
+        int accio = Integer.parseInt(br.readLine());
+        
+        switch (accio) {
+            case 1:
+                
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            default:
+                System.out.println("Opció no vàlida.");
+        }
+    }
+    
 }

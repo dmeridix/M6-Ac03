@@ -11,7 +11,7 @@ public class EmpleatDAO {
     private SessionFactory sessionFactory;
     public EmpleatDAO(SessionFactory sessionFactory) { this.sessionFactory = sessionFactory; }
 
-    public void desar(Empleat empleat) {
+    public void crearEmpleat(Empleat empleat) {
         Transaction transaccio = null;
         try (Session sessio = sessionFactory.openSession()) {
             transaccio = sessio.beginTransaction();
@@ -23,19 +23,19 @@ public class EmpleatDAO {
         }
     }
 
-    public Empleat trobarPerId(int id) {
+    public Empleat trobarEmpleatPerId(int id) {
         try (Session sessio = sessionFactory.openSession()) {
             return sessio.find(Empleat.class, id);
         }
     }
 
-    public List<Empleat> trobarTots() {
+    public List<Empleat> trobarTotsEmpleats() {
         try (Session sessio = sessionFactory.openSession()) {
             return sessio.createQuery("from Empleat", Empleat.class).list();
         }
     }
 
-    public void actualitzar(Empleat empleat) {
+    public void actualitzarEmpleat(Empleat empleat) {
         Transaction transaccio = null;
         try (Session sessio = sessionFactory.openSession()) {
             transaccio = sessio.beginTransaction();
@@ -47,7 +47,7 @@ public class EmpleatDAO {
         }
     }
 
-    public void eliminar(Empleat empleat) {
+    public void eliminarEmpleat(Empleat empleat) {
         Transaction transaccio = null;
         try (Session sessio = sessionFactory.openSession()) {
             transaccio = sessio.beginTransaction();

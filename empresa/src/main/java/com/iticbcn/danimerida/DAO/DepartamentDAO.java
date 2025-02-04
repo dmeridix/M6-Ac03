@@ -28,7 +28,7 @@ public class DepartamentDAO {
         }
     }
 
-    public List<Departament> trobarTotsDEpartament() {
+    public List<Departament> trobarTotsDepartament() {
         try (Session sessio = sessionFactory.openSession()) {
             return sessio.createQuery("from Departament", Departament.class).list();
         }
