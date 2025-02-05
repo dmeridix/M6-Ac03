@@ -16,6 +16,7 @@ public class DepartamentDAO {
             transaccio = sessio.beginTransaction();
             sessio.persist(departament);
             transaccio.commit();
+            System.out.println("Inserció de Departament exitosa");
         } catch (Exception e) {
             if (transaccio != null) transaccio.rollback();
             e.printStackTrace();
@@ -40,6 +41,7 @@ public class DepartamentDAO {
             transaccio = sessio.beginTransaction();
             sessio.merge(departament);
             transaccio.commit();
+            System.out.println("Actualització de Departament exitosa");
         } catch (Exception e) {
             if (transaccio != null) transaccio.rollback();
             e.printStackTrace();
@@ -52,6 +54,7 @@ public class DepartamentDAO {
             transaccio = sessio.beginTransaction();
             sessio.remove(departament);
             transaccio.commit();
+            System.out.println("Eliminació de Departament exitosa");
         } catch (Exception e) {
             if (transaccio != null) transaccio.rollback();
             e.printStackTrace();

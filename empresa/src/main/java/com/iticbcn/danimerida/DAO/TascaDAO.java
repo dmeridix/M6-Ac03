@@ -17,6 +17,7 @@ public class TascaDAO {
             transaccio = sessio.beginTransaction();
             sessio.persist(tasca);
             transaccio.commit();
+            System.out.println("Inserció de Tasca exitosa");
         } catch (Exception e) {
             if (transaccio != null) transaccio.rollback();
             e.printStackTrace();
@@ -40,6 +41,7 @@ public class TascaDAO {
             transaccio = sessio.beginTransaction();
             sessio.merge(tasca);
             transaccio.commit();
+            System.out.println("Actualització de Tasca exitosa");
         } catch (Exception e) {
             if (transaccio != null) transaccio.rollback();
             e.printStackTrace();
@@ -52,6 +54,7 @@ public class TascaDAO {
             transaccio = sessio.beginTransaction();
             sessio.remove(tasca);
             transaccio.commit();
+            System.out.println("Eliminació de Tasca exitosa");
         } catch (Exception e) {
             if (transaccio != null) transaccio.rollback();
             e.printStackTrace();

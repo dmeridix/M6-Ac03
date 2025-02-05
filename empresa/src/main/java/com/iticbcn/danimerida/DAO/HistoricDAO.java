@@ -16,6 +16,7 @@ public class HistoricDAO {
             transaccio = sessio.beginTransaction();
             sessio.persist(historic);
             transaccio.commit();
+            System.out.println("Inserció d'Historic exitosa");
         } catch (Exception e) {
             if (transaccio != null) transaccio.rollback();
             e.printStackTrace();
@@ -39,6 +40,7 @@ public class HistoricDAO {
             transaccio = sessio.beginTransaction();
             sessio.merge(historic);
             transaccio.commit();
+            System.out.println("Actualització d'Historic exitosa");
         } catch (Exception e) {
             if (transaccio != null) transaccio.rollback();
             e.printStackTrace();
@@ -51,6 +53,7 @@ public class HistoricDAO {
             transaccio = sessio.beginTransaction();
             sessio.remove(historic);
             transaccio.commit();
+            System.out.println("Eliminació d'Historic exitosa");
         } catch (Exception e) {
             if (transaccio != null) transaccio.rollback();
             e.printStackTrace();

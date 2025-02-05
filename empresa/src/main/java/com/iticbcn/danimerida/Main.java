@@ -24,34 +24,29 @@ public class Main {
              BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
 
             boolean continuarPrograma = true;
-            while (continuarPrograma) { // Bucle principal
+            while (continuarPrograma) {
 
-                // 1️⃣ Seleccionar la tabla
                 Object dao = seleccionarTaula(br, sessionFactory);
                 if (dao == null) {
                     System.out.println("Opció no vàlida. Tornant al menú...");
-                    continue; // Vuelve a preguntar la tabla
+                    continue;
                 }
 
                 boolean continuarConTabla = true;
-                while (continuarConTabla) { // Bucle para operaciones en la misma tabla
-                    // 2️⃣ Ejecutar acciones sobre la tabla seleccionada
+                while (continuarConTabla) {
                     seleccionarAccio(dao, br);
 
-                    // 3️⃣ Preguntar si quiere hacer otra acción sobre la misma tabla
                     System.out.print("Vols fer una altra acció sobre la mateixa taula? (s/n) >> ");
                     String respuestaAccion = br.readLine().trim().toLowerCase();
                     continuarConTabla = respuestaAccion.equals("s");
                 }
 
-                // 4️⃣ Preguntar si quiere cambiar de tabla o salir del programa
                 System.out.print("Vols canviar de taula o sortir del programa? (t = nova taula, s = sortir) >> ");
                 String respuestaTabla = br.readLine().trim().toLowerCase();
                 if (respuestaTabla.equals("s")) {
-                    continuarPrograma = false; // Salimos del bucle principal
+                    continuarPrograma = false;
                 }
             }
-
             System.out.println("Programa finalitzat. Adéu!");
 
         } catch (Exception e) {

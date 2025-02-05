@@ -30,4 +30,9 @@ public class Tasca {
     public void setEmpleats(Set<Empleat> empleats) {
         this.empleats = empleats;
     }
+
+    @Override
+    public String toString() {
+        return "Tasca{id=" + id + ", descripcio='" + descripcio + "'}";
+    }
 }

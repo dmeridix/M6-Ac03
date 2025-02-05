@@ -39,4 +39,10 @@ public class Historic {
     public void setTasca(Tasca tasca) {
         this.tasca = tasca;
     }
+
+    @Override
+    public String toString() {
+        return "Historic{id=" + id + ", comentari='" + comentari + "', tasca='" + 
+               (tasca != null ? tasca.getDescripcio() : "Sense Tasca") + "'}";
+    }
 }

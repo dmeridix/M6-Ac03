@@ -17,6 +17,7 @@ public class EmpleatDAO {
             transaccio = sessio.beginTransaction();
             sessio.persist(empleat);
             transaccio.commit();
+            System.out.println("Inserció de Empleat exitosa");
         } catch (Exception e) {
             if (transaccio != null) transaccio.rollback();
             e.printStackTrace();
@@ -41,6 +42,7 @@ public class EmpleatDAO {
             transaccio = sessio.beginTransaction();
             sessio.merge(empleat);
             transaccio.commit();
+            System.out.println("Actualització de Empleat exitosa");
         } catch (Exception e) {
             if (transaccio != null) transaccio.rollback();
             e.printStackTrace();
@@ -53,6 +55,7 @@ public class EmpleatDAO {
             transaccio = sessio.beginTransaction();
             sessio.remove(empleat);
             transaccio.commit();
+            System.out.println("Eliminació de Empleat exitosa");
         } catch (Exception e) {
             if (transaccio != null) transaccio.rollback();
             e.printStackTrace();
