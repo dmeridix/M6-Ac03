@@ -10,7 +10,7 @@ public class HistoricDAO {
     private SessionFactory sessionFactory;
     public HistoricDAO(SessionFactory sessionFactory) { this.sessionFactory = sessionFactory; }
 
-    public void crearHistoric(Historic historic) {
+    public void crear(Historic historic) {
         Transaction transaccio = null;
         try (Session sessio = sessionFactory.openSession()) {
             transaccio = sessio.beginTransaction();
@@ -22,15 +22,39 @@ public class HistoricDAO {
         }
     }
 
-    public Historic trobarHistoricPerId(int id) {
+    public Historic trobarPerId(int id) {
         try (Session sessio = sessionFactory.openSession()) {
             return sessio.find(Historic.class, id);
         }
     }
 
-    public List<Historic> trobarTotsHistorics() {
+    public List<Historic> trobarTots() {
         try (Session sessio = sessionFactory.openSession()) {
             return sessio.createQuery("from Historic", Historic.class).list();
         }
     }
+    public void actualitzar(Historic historic) {
+        Transaction transaccio = null;
+        try (Session sessio = sessionFactory.openSession()) {
+            transaccio = sessio.beginTransaction();
+            sessio.merge(historic);
+            transaccio.commit();
+        } catch (Exception e) {
+            if (transaccio != null) transaccio.rollback();
+            e.printStackTrace();
+        }
+    }
+    
+    public void eliminar(Historic historic) {
+        Transaction transaccio = null;
+        try (Session sessio = sessionFactory.openSession()) {
+            transaccio = sessio.beginTransaction();
+            sessio.remove(historic);
+            transaccio.commit();
+        } catch (Exception e) {
+            if (transaccio != null) transaccio.rollback();
+            e.printStackTrace();
+        }
+    }
+    
 }

@@ -48,10 +48,7 @@ public class Main {
             case 2 -> new EmpleatDAO(session);
             case 3 -> new TascaDAO(session);
             case 4 -> new HistoricDAO(session);
-            default -> {
-                System.out.println("Opció no vàlida.");
-                yield null;
-            }
+            default -> null;            
         };
     }
     public static void seleccionarAccio(Object dao, BufferedReader br) throws IOException {
@@ -59,6 +56,7 @@ public class Main {
         
         System.out.println("Selecciona l'acció:");
         System.out.println("1. Llistar");
+        System.out.println("1. Llistar per ID");
         System.out.println("2. Inserir");
         System.out.println("3. Actualitzar");
         System.out.println("4. Eliminar");
@@ -68,7 +66,7 @@ public class Main {
         
         switch (accio) {
             case 1:
-                
+                dao.trobarTots();
                 break;
             case 2:
                 break;

@@ -11,7 +11,7 @@ public class TascaDAO {
     private SessionFactory sessionFactory;
     public TascaDAO(SessionFactory sessionFactory) { this.sessionFactory = sessionFactory; }
 
-    public void desar(Tasca tasca) {
+    public void crear(Tasca tasca) {
         Transaction transaccio = null;
         try (Session sessio = sessionFactory.openSession()) {
             transaccio = sessio.beginTransaction();
@@ -34,4 +34,28 @@ public class TascaDAO {
             return sessio.createQuery("from Tasca", Tasca.class).list();
         }
     }
+    public void actualitzar(Tasca tasca) {
+        Transaction transaccio = null;
+        try (Session sessio = sessionFactory.openSession()) {
+            transaccio = sessio.beginTransaction();
+            sessio.merge(tasca);
+            transaccio.commit();
+        } catch (Exception e) {
+            if (transaccio != null) transaccio.rollback();
+            e.printStackTrace();
+        }
+    }
+    
+    public void eliminar(Tasca tasca) {
+        Transaction transaccio = null;
+        try (Session sessio = sessionFactory.openSession()) {
+            transaccio = sessio.beginTransaction();
+            sessio.remove(tasca);
+            transaccio.commit();
+        } catch (Exception e) {
+            if (transaccio != null) transaccio.rollback();
+            e.printStackTrace();
+        }
+    }
+    
 }

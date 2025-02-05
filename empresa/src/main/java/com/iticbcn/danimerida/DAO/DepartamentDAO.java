@@ -10,7 +10,7 @@ public class DepartamentDAO {
     private SessionFactory sessionFactory;
     public DepartamentDAO(SessionFactory sessionFactory) { this.sessionFactory = sessionFactory; }
 
-    public void crearDepartament(Departament departament) {
+    public void crear(Departament departament) {
         Transaction transaccio = null;
         try (Session sessio = sessionFactory.openSession()) {
             transaccio = sessio.beginTransaction();
@@ -22,19 +22,19 @@ public class DepartamentDAO {
         }
     }
 
-    public Departament trobarDepartamentPerId(int id) {
+    public Departament trobarPerId(int id) {
         try (Session sessio = sessionFactory.openSession()) {
             return sessio.find(Departament.class, id);
         }
     }
 
-    public List<Departament> trobarTotsDepartament() {
+    public List<Departament> trobarTots() {
         try (Session sessio = sessionFactory.openSession()) {
             return sessio.createQuery("from Departament", Departament.class).list();
         }
     }
 
-    public void actualitzarDepartament(Departament departament) {
+    public void actualitzar(Departament departament) {
         Transaction transaccio = null;
         try (Session sessio = sessionFactory.openSession()) {
             transaccio = sessio.beginTransaction();
