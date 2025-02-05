@@ -53,4 +53,11 @@ public class Empleat {
     public void setTasques(Set<Tasca> tasques) {
         this.tasques = tasques;
     }
+
+    @Override
+    public String toString() {
+        return "Empleat{id=" + id + ", nom='" + nom + "', departament='" + 
+                (departament != null ? departament.getNom() : "Sense Departament") + "'}";
+    }
+
 }

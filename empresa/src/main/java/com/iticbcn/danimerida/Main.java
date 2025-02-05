@@ -45,9 +45,9 @@ public class Main {
                 }
 
                 // 4️⃣ Preguntar si quiere cambiar de tabla o salir del programa
-                System.out.print("Vols canviar de taula o sortir del programa? (t = nova taula, n = sortir) >> ");
+                System.out.print("Vols canviar de taula o sortir del programa? (t = nova taula, s = sortir) >> ");
                 String respuestaTabla = br.readLine().trim().toLowerCase();
-                if (respuestaTabla.equals("n")) {
+                if (respuestaTabla.equals("s")) {
                     continuarPrograma = false; // Salimos del bucle principal
                 }
             }

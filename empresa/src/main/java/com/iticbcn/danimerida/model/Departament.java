@@ -39,4 +39,10 @@ public class Departament {
     public void setEmpleats(Set<Empleat> empleats) {
         this.empleats = empleats;
     }
+
+    @Override
+    public String toString() {
+        return "Departament{id=" + id + ", nom='" + nom + "'}";
+    }
+
 }
