@@ -29,11 +29,6 @@ public class HistoricDAO {
         }
     }
 
-    public List<Historic> trobarTots() {
-        try (Session sessio = sessionFactory.openSession()) {
-            return sessio.createQuery("from Historic", Historic.class).list();
-        }
-    }
     public void actualitzar(Historic historic) {
         Transaction transaccio = null;
         try (Session sessio = sessionFactory.openSession()) {
@@ -57,6 +52,13 @@ public class HistoricDAO {
         } catch (Exception e) {
             if (transaccio != null) transaccio.rollback();
             e.printStackTrace();
+        }
+    }
+
+    // Consulta HQL
+    public List<Historic> trobarTots() {
+        try (Session sessio = sessionFactory.openSession()) {
+            return sessio.createQuery("from Historic", Historic.class).list();
         }
     }
     

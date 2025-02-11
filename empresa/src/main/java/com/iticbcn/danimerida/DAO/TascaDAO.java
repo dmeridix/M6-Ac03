@@ -63,4 +63,14 @@ public class TascaDAO {
         }
     }
     
+    // Consultes HQL
+    public List<Object[]> contarTasquesPerEmpleat() {
+        try (Session sessio = sessionFactory.openSession()) {
+            return sessio.createQuery(
+                "SELECT e.nom, COUNT(t) FROM Empleat e JOIN e.tasques t GROUP BY e.nom",
+                Object[].class
+            ).list();
+        }
+    }
+    
 }

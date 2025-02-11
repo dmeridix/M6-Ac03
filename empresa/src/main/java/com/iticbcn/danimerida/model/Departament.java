@@ -40,6 +40,8 @@ public class Departament {
         this.empleats = empleats;
     }
 
+    // toString per modificar la sortida per pantalla de forma controlada
+    // (en aquesta part he necessitat ajuda)
     @Override
     public String toString() {
         String empleatsString = (empleats == null || empleats.isEmpty()) 

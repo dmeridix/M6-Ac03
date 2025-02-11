@@ -40,6 +40,7 @@ public class Historic {
         this.tasca = tasca;
     }
 
+    // toString per modificar la sortida per pantalla de forma controlada
     @Override
     public String toString() {
         String tascaStr = (tasca != null) ? tasca.getDescripcio() : "Sense Tasca";

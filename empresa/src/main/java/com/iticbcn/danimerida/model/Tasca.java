@@ -31,15 +31,15 @@ public class Tasca {
         this.empleats = empleats;
     }
 
-    
+    // toString per modificar la sortida per pantalla de forma controlada (en
+    // aquesta part he necessitat ajuda)
     @Override
     public String toString() {
-        String empleatsString = (empleats == null || empleats.isEmpty()) 
-                ? "Sense empleats" 
+        String empleatsString = (empleats == null || empleats.isEmpty())
+                ? "Sense empleats"
                 : String.join(", ", empleats.stream().map(Empleat::getNom).toList());
 
         return String.format("Tasca{id=%d, descripcio='%s', empleats=[%s]}", id, descripcio, empleatsString);
     }
-
 
 }

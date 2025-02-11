@@ -54,6 +54,8 @@ public class Empleat {
         this.tasques = tasques;
     }
 
+    // toString per modificar la sortida per pantalla de forma controlada (en
+    // aquesta part he necessitat ajuda)
     @Override
     public String toString() {
         String tasquesString = (tasques == null || tasques.isEmpty()) 
@@ -65,7 +67,4 @@ public class Empleat {
         return String.format("Empleat{id=%d, nom='%s', departament='%s', tasques=[%s]}", 
                             id, nom, departamentString, tasquesString);
     }
-
-
-
 }

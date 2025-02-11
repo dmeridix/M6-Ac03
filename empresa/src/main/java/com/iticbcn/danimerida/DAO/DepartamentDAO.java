@@ -29,12 +29,7 @@ public class DepartamentDAO {
         }
     }
 
-    public List<Departament> trobarTots() {
-        try (Session sessio = sessionFactory.openSession()) {
-            return sessio.createQuery("from Departament", Departament.class).list();
-        }
-    }
-
+    
     public void actualitzar(Departament departament) {
         Transaction transaccio = null;
         try (Session sessio = sessionFactory.openSession()) {
@@ -47,7 +42,7 @@ public class DepartamentDAO {
             e.printStackTrace();
         }
     }
-
+    
     public void eliminar(Departament departament) {
         Transaction transaccio = null;
         try (Session sessio = sessionFactory.openSession()) {
@@ -60,4 +55,12 @@ public class DepartamentDAO {
             e.printStackTrace();
         }
     }
+    
+    // Consultes HQL
+    public List<Departament> trobarTots() {
+        try (Session sessio = sessionFactory.openSession()) {
+            return sessio.createQuery("from Departament", Departament.class).list();
+        }
+    }
+    
 }

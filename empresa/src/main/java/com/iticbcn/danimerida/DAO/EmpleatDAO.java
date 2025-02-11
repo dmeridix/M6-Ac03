@@ -63,4 +63,14 @@ public class EmpleatDAO {
             e.printStackTrace();
         }
     }
+
+    // Consultes HQL 
+    public List<Object[]> contarEmpleatsPerDepartament() {
+        try (Session sessio = sessionFactory.openSession()) {
+            return sessio.createQuery(
+                "SELECT e.departament.nom, COUNT(e) FROM Empleat e GROUP BY e.departament.nom",
+                Object[].class
+                ).list();
+        }
+    }
 }

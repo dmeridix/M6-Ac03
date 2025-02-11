@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 public class Utils {
     private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
+    // Metode per lectura per linea de comandes
     public static String readLine() {
         try {
             return reader.readLine();
