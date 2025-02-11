@@ -18,7 +18,7 @@ public class Empleat {
     @JoinColumn(name = "departament_id", nullable = false)
     private Departament departament;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "Empleat_Tasca", joinColumns = @JoinColumn(name = "empleat_id"), inverseJoinColumns = @JoinColumn(name = "tasca_id"))
     private Set<Tasca> tasques;
 
@@ -56,8 +56,16 @@ public class Empleat {
 
     @Override
     public String toString() {
-        return "Empleat{id=" + id + ", nom='" + nom + "', departament='" + 
-                (departament != null ? departament.getNom() : "Sense Departament") + "'}";
+        String tasquesString = (tasques == null || tasques.isEmpty()) 
+                ? "Sense tasques" 
+                : String.join(", ", tasques.stream().map(Tasca::getDescripcio).toList());
+
+        String departamentString = (departament != null) ? departament.getNom() : "Sense Departament";
+
+        return String.format("Empleat{id=%d, nom='%s', departament='%s', tasques=[%s]}", 
+                            id, nom, departamentString, tasquesString);
     }
+
+
 
 }

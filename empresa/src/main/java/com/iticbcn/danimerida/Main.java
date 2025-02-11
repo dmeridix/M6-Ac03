@@ -142,17 +142,41 @@ public class Main {
             Departament departament = new Departament();
             departament.setId(departamentId);
     
+            System.out.print("Introdueix els IDs de les tasques assignades (separats per comes) >> ");
+            String tascaIdsStr = br.readLine();
+            Set<Tasca> tasques = new HashSet<>();
+            
+            for (String tascaId : tascaIdsStr.split(",")) {
+                Tasca tasca = new Tasca();
+                tasca.setId(Integer.parseInt(tascaId.trim()));
+                tasques.add(tasca);
+            }
+
             Empleat empleat = new Empleat();
             empleat.setNom(nom);
             empleat.setDepartament(departament);
+            empleat.setTasques(tasques);
     
-            ((EmpleatDAO) dao).crear(empleat);
+            ((EmpleatDAO) dao).crear(empleat, tasques);
         } else if (dao instanceof TascaDAO) {
             System.out.print("Introdueix la descripció de la tasca >> ");
             String descripcio = br.readLine();
+
+            System.out.print("Introdueix els IDs dels empleats assignats (separats per comes) >> ");
+            String empleatIdsStr = br.readLine();
+            Set<Empleat> empleats = new HashSet<>();
+            
+            for (String empleatId : empleatIdsStr.split(",")) {
+                Empleat empleat = new Empleat();
+                empleat.setId(Integer.parseInt(empleatId.trim()));
+                empleats.add(empleat);
+            }
+
             Tasca tasca = new Tasca();
             tasca.setDescripcio(descripcio);
-            ((TascaDAO) dao).crear(tasca);
+            tasca.setEmpleats(empleats);
+
+        ((TascaDAO) dao).crear(tasca, empleats);
         } else if (dao instanceof HistoricDAO) {
             System.out.print("Introdueix el comentari >> ");
             String comentari = br.readLine();

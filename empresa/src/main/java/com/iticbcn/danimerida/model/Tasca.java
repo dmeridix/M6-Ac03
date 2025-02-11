@@ -31,8 +31,15 @@ public class Tasca {
         this.empleats = empleats;
     }
 
+    
     @Override
     public String toString() {
-        return "Tasca{id=" + id + ", descripcio='" + descripcio + "'}";
+        String empleatsString = (empleats == null || empleats.isEmpty()) 
+                ? "Sense empleats" 
+                : String.join(", ", empleats.stream().map(Empleat::getNom).toList());
+
+        return String.format("Tasca{id=%d, descripcio='%s', empleats=[%s]}", id, descripcio, empleatsString);
     }
+
+
 }

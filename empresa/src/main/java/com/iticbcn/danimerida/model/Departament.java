@@ -42,7 +42,12 @@ public class Departament {
 
     @Override
     public String toString() {
-        return "Departament{id=" + id + ", nom='" + nom + "'}";
+        String empleatsString = (empleats == null || empleats.isEmpty()) 
+                ? "Sense empleats" 
+                : String.join(", ", empleats.stream().map(Empleat::getNom).toList());
+
+        return String.format("Departament{id=%d, nom='%s', empleats=[%s]}", id, nom, empleatsString);
     }
+
 
 }

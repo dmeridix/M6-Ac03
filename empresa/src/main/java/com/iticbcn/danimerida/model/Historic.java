@@ -42,7 +42,7 @@ public class Historic {
 
     @Override
     public String toString() {
-        return "Historic{id=" + id + ", comentari='" + comentari + "', tasca='" + 
-               (tasca != null ? tasca.getDescripcio() : "Sense Tasca") + "'}";
+        String tascaStr = (tasca != null) ? tasca.getDescripcio() : "Sense Tasca";
+        return String.format("Historic{id=%d, comentari='%s', tasca='%s'}", id, comentari, tascaStr);
     }
 }

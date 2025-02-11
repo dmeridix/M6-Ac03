@@ -8,7 +8,7 @@
         </id>
         <property name="descripcio" column="descripcio" type="string" not-null="true"/>
 
-        <set name="empleats" table="Empleat_Tasca" fetch="join">
+        <set name="empleats" table="Empleat_Tasca" lazy="false">
             <key column="tasca_id"/>
             <many-to-many class="com.iticbcn.danimerida.model.Empleat" column="empleat_id"/>
         </set>

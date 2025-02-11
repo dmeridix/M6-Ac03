@@ -6,15 +6,17 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import java.util.List;
+import java.util.Set;
 
 public class EmpleatDAO {
     private SessionFactory sessionFactory;
     public EmpleatDAO(SessionFactory sessionFactory) { this.sessionFactory = sessionFactory; }
 
-    public void crear(Empleat empleat) {
+    public void crear(Empleat empleat, Set<Tasca> tasques) {
         Transaction transaccio = null;
         try (Session sessio = sessionFactory.openSession()) {
             transaccio = sessio.beginTransaction();
+            empleat.setTasques(tasques);
             sessio.persist(empleat);
             transaccio.commit();
             System.out.println("Inserció de Empleat exitosa");
